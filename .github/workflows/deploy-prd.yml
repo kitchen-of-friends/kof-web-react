@@ -49,8 +49,8 @@ jobs:
         uses: fifsky/ssh-action@v0.0.6
         with:
           command: |
-            sudo docker compose -f ${{ vars.KOF_WEBFN_PRD_DOCKER_FILEPATH }} pull
-            sudo docker compose -f ${{ vars.KOF_WEBFN_PRD_DOCKER_FILEPATH }} up -d
+            sudo docker-compose -f ${{ vars.KOF_WEBFN_PRD_DOCKER_FILEPATH }} pull
+            sudo docker-compose -f ${{ vars.KOF_WEBFN_PRD_DOCKER_FILEPATH }} up -d
             sudo docker image prune -f
           host: ${{ vars.KOF_WEBFN_PRD_SSH_HOST }}
           user: ${{ vars.KOF_WEBFN_PRD_SSH_USER }}
