@@ -4,6 +4,7 @@ import { Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import LoginOrRegisterComponent from "./loginOrRegister";
+import Dropdown from "antd/es/dropdown/dropdown";
 
 const navigation = [
   { name: "主页", href: "/" },
@@ -33,6 +34,25 @@ const items = [
 ];
 
 const NavBar = () => {
+  const menuItems = [
+    {
+      key: "m1",
+      label: <a href="/">主页</a>,
+    },
+    {
+      key: "m2",
+      label: <a href="/party/list">精彩聚会</a>,
+    },
+    {
+      key: "m3",
+      label: <a href="/business/entry">成为厨房主</a>,
+    },
+    {
+      key: "m4",
+      label: <a href="/about">关于我们</a>,
+    },
+  ];
+
   return (
     <Popover>
       <div
@@ -48,9 +68,11 @@ const NavBar = () => {
           </a>
           {/* 导航栏 */}
           {navigation.map((item) => (
-            <a key={item.name} href={item.href} className="font-medium mr-6">
-              {item.name}
-            </a>
+            <div className="hidden md:block">
+              <a key={item.name} href={item.href} className="font-medium mr-6">
+                {item.name}
+              </a>
+            </div>
           ))}
         </div>
 
@@ -75,6 +97,19 @@ const NavBar = () => {
               <DownOutlined />
             </Dropdown>{" "} */}
           </div>
+        </div>
+
+        {/* 移动端菜单 */}
+        <div className="mr-2 flex md:hidden cursor-pointer">
+          {/* Mobile menu button */}
+          <Dropdown menu={{ items: menuItems }} trigger={["click"]}>
+            <div>
+              <Bars3Icon
+                className="h-6 w-6 text-yellow-400"
+                aria-hidden="true"
+              />
+            </div>
+          </Dropdown>
         </div>
       </div>
 
