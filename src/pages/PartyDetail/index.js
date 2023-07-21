@@ -255,9 +255,9 @@ const PartyDetailPage = () => {
   };
 
   return (
-    <div className="mt-10 flex flex-row items-start justify-between p-8">
+    <div className="mt-10 flex flex-col md:flex-row items-start justify-between p-8">
       {/* 聚会图片 + 厨房主信息 */}
-      <div className="w-2/5">
+      <div className="md:w-2/5">
         <img className="w-full h-auto" src={selectedParty.img} />
         <div className="mt-8">
           <div className="font-bold text-l mb-3">厨房主信息</div>
@@ -277,7 +277,7 @@ const PartyDetailPage = () => {
         </div>
       </div>
       {/* 聚会描述 */}
-      <div className="w-3/5 ml-10">
+      <div className="mt-10 md:mt-0 md:w-3/5 md:ml-10">
         {/* 聚会名称 */}
         <div className="font-bold text-2xl">{selectedParty.name}</div>
         {selectedParty.isMemberOnly === true && (
