@@ -258,7 +258,7 @@ const PartyListPage = () => {
 
       {/* 筛选后的聚会列表 */}
       {filteredPartyData.length > 0 ? (
-        <div className="mt-12 grid grid-rows-999 grid-cols-2 gap-3">
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-3">
           {filteredPartyData.map((data, index) => (
             <PartyCard key={index} {...data} />
           ))}
@@ -286,6 +286,7 @@ const PartyListPage = () => {
             src={receiptCode}
             alt="Payment Code"
           />
+          <div className="text-xl font-bold">请支付人民币 99 元</div>
           <div className="mt-20 grid grid-cols-2 gap-4">
             <button
               className="close-button bg-gray-500 text-white h-auto w-100% p-2 rounded"

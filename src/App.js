@@ -22,44 +22,53 @@ import "./App.css";
 import PartyListPage from "./pages/PartyList";
 import ProfilePage from "./pages/Profile";
 import BottomBar from "./components/bottomBar";
+import { ConfigProvider } from "antd";
 
 function App() {
   return (
-    <div className="h-screen flex flex-col justify-between">
-      <div>
-        <NavBar />
-        <Router>
-          <div className="max-w-6xl ml-auto mr-auto">
-            <Routes>
-              <Route exact path="/" element={<MainPage />} />
-              <Route path="/friends" element={<FriendsListPage />} />
-              <Route path="/booking" element={<BookingPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/kitchen/my" element={<MyKitchenListPage />} />
-              <Route path="/kitchen/create" element={<KitchenCMPage />} />
-              <Route
-                path="/kitchen/manage"
-                element={<KitchenManagementPage />}
-              />
-              <Route path="/party/list" element={<PartyListPage />} />
-              <Route path="/party/create" element={<PartyCMPage />} />
-              <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/party/detail" element={<PartyDetailPage />} />
-              <Route
-                path="/party/management"
-                element={<PartyManagementPage />}
-              />
-              <Route path="/business/entry" element={<BusinessEntryPage />} />
-              <Route
-                path="/business/entry/information"
-                element={<EntryInformationPage />}
-              />
-            </Routes>
-          </div>
-        </Router>
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: "#f2cf08",
+        },
+      }}
+    >
+      <div className="h-screen flex flex-col justify-between">
+        <div>
+          <NavBar />
+          <Router>
+            <div className="max-w-6xl ml-auto mr-auto">
+              <Routes>
+                <Route exact path="/" element={<MainPage />} />
+                <Route path="/friends" element={<FriendsListPage />} />
+                <Route path="/booking" element={<BookingPage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/kitchen/my" element={<MyKitchenListPage />} />
+                <Route path="/kitchen/create" element={<KitchenCMPage />} />
+                <Route
+                  path="/kitchen/manage"
+                  element={<KitchenManagementPage />}
+                />
+                <Route path="/party/list" element={<PartyListPage />} />
+                <Route path="/party/create" element={<PartyCMPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/party/detail" element={<PartyDetailPage />} />
+                <Route
+                  path="/party/management"
+                  element={<PartyManagementPage />}
+                />
+                <Route path="/business/entry" element={<BusinessEntryPage />} />
+                <Route
+                  path="/business/entry/information"
+                  element={<EntryInformationPage />}
+                />
+              </Routes>
+            </div>
+          </Router>
+        </div>
+        <BottomBar />
       </div>
-      <BottomBar />
-    </div>
+    </ConfigProvider>
   );
 }
 

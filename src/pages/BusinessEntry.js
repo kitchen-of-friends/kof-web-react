@@ -15,7 +15,7 @@ const BusinessEntryPage = () => {
     <div>
       <img className="my-10" src={businessEntry} />
       {/* 入驻卡片 */}
-      <div className="grid grid-cols-2 gap-12 mx-8 mt-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mx-8 mt-12">
         {/* 个人入驻 */}
         <div className=" w-full h-auto border p-2  flex flex-col items-center justify-between">
           {/* 信息介绍 */}
@@ -84,7 +84,7 @@ const BusinessEntryPage = () => {
         </div>
       </div>
       {/* 入驻流程 */}
-      <div className="mt-24">
+      <div className="mt-24 mx-8">
         <div className="font-bold text-2xl text-center">入驻流程</div>
         <Steps
           className="mt-4 w-full"
@@ -117,7 +117,7 @@ const BusinessEntryPage = () => {
         />
       </div>
       {/* 常见问题解答 */}
-      <div className="mt-24">
+      <div className="mt-24 mx-8">
         <div className="font-bold text-2xl text-center">常见问题解答</div>
         <div className="mt-4">
           <div>入驻审核需要多久？</div>

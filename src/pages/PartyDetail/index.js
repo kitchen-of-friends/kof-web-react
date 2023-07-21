@@ -2,6 +2,7 @@ import moment from "moment";
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Button, message, Popconfirm } from "antd";
+import receiptCode from "../../assets/receipt-code.png";
 import { CheckCircleOutlined } from "@ant-design/icons";
 
 // 这里是聚会详情数据，TODO:完善一下编撰的数据
@@ -336,10 +337,25 @@ const PartyDetailPage = () => {
           {/* 报名按钮及弹窗 */}
           <Popconfirm
             title="报名聚会"
-            description="立即确认报名本场聚会？"
+            description={
+              <div>
+                <div>立即确认报名本场聚会？</div>
+                <img
+                  className="payment-code w-40 h-40"
+                  src={receiptCode}
+                  alt="Payment Code"
+                />
+                <div className="text-xl font-bold">
+                  请支付人民币 {selectedParty.fee}
+                </div>
+              </div>
+            }
             onConfirm={confirm}
             okText="确认"
             cancelText="再想想"
+            okButtonProps={{
+              type: "default",
+            }}
           >
             <Button>立即报名</Button>
           </Popconfirm>

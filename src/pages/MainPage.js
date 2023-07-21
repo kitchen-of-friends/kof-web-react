@@ -96,7 +96,7 @@ const MainPage = () => {
       <img className="my-10 " src={mainpageBanner} />
       {/* 精选聚会 */}
       <div className="text-xl font-medium mb-4">精选聚会</div>
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {partyData.map((data, index) => (
           <PartyCard key={index} {...data} />
         ))}
