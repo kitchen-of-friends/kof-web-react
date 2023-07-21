@@ -9,7 +9,9 @@ const BottomBar = () => {
       </text>
       <text>公司邮编：100102</text>
       <text>联系电话：+86 19147829789</text>
-      <text>网站备案：京ICP备2023018574号</text>
+      <text>
+        <a href="https://beian.miit.gov.cn">网站备案：京ICP备2023018574号</a>
+      </text>
     </div>
   );
 };

@@ -1,0 +1,57 @@
+name: BuildAndDeploy-prd
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "docs/**"
+      - "tests/**"
+
+jobs:
+  # 第一个 Job Build 镜像 并且 传到 Dockerhub
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: napoleonlynch/kof-webfn-react:prd
+  # 第二个 Job 更新 Tencent Cloud
+  update-on-tc:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Remote SSH Commands
+        uses: fifsky/ssh-action@v0.0.6
+        with:
+          command: |
+            sudo docker compose -f ${{ vars.KOF_WEBFN_PRD_DOCKER_FILEPATH }} pull
+            sudo docker compose -f ${{ vars.KOF_WEBFN_PRD_DOCKER_FILEPATH }} up -d
+            sudo docker image prune -f
+          host: ${{ vars.KOF_WEBFN_PRD_SSH_HOST }}
+          user: ${{ vars.KOF_WEBFN_PRD_SSH_USER }}
+          pass: ${{ secrets.KOF_WEBFN_PRD_SSH_PASSWORD }}
